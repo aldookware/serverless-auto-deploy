@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: 
           name: Install dependencies
-          command: ./.circleci/build.sh 
+          command: bash ./.circleci/build.sh 
       - run:
           name: Deploy lambdas
           command: |
