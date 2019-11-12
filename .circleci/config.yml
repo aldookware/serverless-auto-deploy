@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10-browsers-legacy
+    steps:
+      - checkout
+      - run: 
+          name: Install dependencies
+          command: bash ./.circleci/build.sh 
+      - run:
+          name: Deploy lambdas
+          command: |
+            export PATH=~/.npm-global/bin:$PATH
+            if [ "${CIRCLE_BRANCH}" = "master" ] ; then
+              cd hello-world
+              make deploy
+            fi
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build 
