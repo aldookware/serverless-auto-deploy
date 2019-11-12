@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 sudo apt-get update -y
 sudo apt-get upgrade 
+sudo apt-get install make
 
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'

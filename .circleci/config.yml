@@ -15,7 +15,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" = "master" ] ; then
               cd hello-world
               make deploy
-
+            fi
 workflows:
   version: 2
   build:
