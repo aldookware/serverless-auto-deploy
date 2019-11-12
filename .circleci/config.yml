@@ -11,6 +11,7 @@ jobs:
       - run:
           name: Deploy lambdas
           command: |
+            export PATH=~/.npm-global/bin:$PATH
             if [ "${CIRCLE_BRANCH}" = "master" ] ; then
               cd hello-world
               make deploy
