@@ -11,9 +11,6 @@ jobs:
       - image: circleci/node:10-browsers-legacy
     steps:
       - checkout
-      - run: 
-          name: Install dependencies
-          command: bash ./.circleci/build.sh 
       - run:
           name: Deploy lambdas
           command: |
