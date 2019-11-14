@@ -15,7 +15,8 @@ jobs:
           name: Deploy lambdas
           command: |
             sudo npm install -g serverless
-            sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID  --secret $AWS_SECRET_ACCESS_KEY
+            sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
+
             if [ "${CIRCLE_BRANCH}" = "master" ] ; then
               cd hello-world
               sls deploy --stage prod
@@ -24,6 +25,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" = "develop"] ; then
               cd hello-world
               sls deploy --stage dev
+            fi
 workflows:
   version: 2
   build:
