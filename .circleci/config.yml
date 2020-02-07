@@ -19,16 +19,10 @@ jobs:
 
             if [ "${CIRCLE_BRANCH}" = "master" ] ; then
               cd layer
-              . ./build_layer.sh
+              source ./build_layer.sh
               cd ..
+              pwd
               sls deploy --stage prod
-            fi
-
-            if [ "${CIRCLE_BRANCH}" = "develop"] ; then
-              cd layer
-              . ./build_layer.sh
-              cd ..
-              sls deploy --stage dev
             fi
 workflows:
   version: 2
