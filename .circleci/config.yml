@@ -18,12 +18,16 @@ jobs:
             sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
 
             if [ "${CIRCLE_BRANCH}" = "master" ] ; then
-              cd hello-world
+              cd layer
+              . ./build_layer.sh
+              cd ..
               sls deploy --stage prod
             fi
 
             if [ "${CIRCLE_BRANCH}" = "develop"] ; then
-              cd hello-world
+              cd layer
+              . ./build_layer.sh
+              cd ..
               sls deploy --stage dev
             fi
 workflows:

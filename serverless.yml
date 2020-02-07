@@ -1,0 +1,18 @@
+
+service: hello-world
+
+provider:
+  name: aws
+  runtime: python3.7
+  region: eu-west-2
+  stage: ${opt:stage}
+
+layers:
+  weather:
+    path: layer
+    compatibleRuntimes:
+      - python3.7
+
+functions:
+  get_city_weather:
+    handler: main.get_city_weather
