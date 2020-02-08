@@ -11,6 +11,7 @@ jobs:
       - image: node:alpine3.10
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Create lambda layer
           command: | 
