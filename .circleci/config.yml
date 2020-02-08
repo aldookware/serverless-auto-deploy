@@ -8,7 +8,7 @@ jobs:
       
   deploy:
     docker:
-      - image: node:dind
+      - image: node:10
     steps:
       - checkout
       - run:
