@@ -8,9 +8,12 @@ jobs:
       
   deploy:
     docker:
-      - image: circleci/node:10-alpine
+      - image: node:10.19.0-alpine3.10
     steps:
       - checkout
+      - run:
+          name: Install Docker client
+          command: apk add docker-cli
       - run:
           name: Create lambda layer
           command: | 
