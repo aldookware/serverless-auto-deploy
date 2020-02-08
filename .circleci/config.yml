@@ -8,10 +8,9 @@ jobs:
       
   deploy:
     docker:
-      - image: circleci/node:lts
+      - image: hahoo/nodejs-dind:latest
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Create lambda layer
           command: | 
