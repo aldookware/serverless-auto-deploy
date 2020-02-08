@@ -8,20 +8,20 @@ jobs:
       
   deploy:
     docker:
-      - image: circleci/node:10-browsers-legacy
+      - image: circleci/node:10
     steps:
       - checkout
       - run:
+          name: Create lambda layer
+          command: ./build_layer.sh
+      - run:
           name: Deploy lambdas
           command: |
+            pwd
             sudo npm install -g serverless
             sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
 
             if [ "${CIRCLE_BRANCH}" = "master" ] ; then
-              cd layer
-              source ./build_layer.sh
-              cd ..
-              pwd
               sls deploy --stage prod
             fi
 workflows:
