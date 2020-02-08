@@ -8,7 +8,7 @@ jobs:
       
   deploy:
     docker:
-      - image: hahoo/nodejs-dind:latest
+      - image: node:dind
     steps:
       - checkout
       - run:
