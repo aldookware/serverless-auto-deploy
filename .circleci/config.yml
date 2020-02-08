@@ -8,7 +8,7 @@ jobs:
       
   deploy:
     docker:
-      - image: node:alpine3.10
+      - image: circleci/node:lts
     steps:
       - checkout
       - setup_remote_docker
@@ -16,7 +16,11 @@ jobs:
           name: Create lambda layer
           command: | 
             cd layer
-            source ./build_layer.sh
+            export PKG_DIR="python"
+            rm -rf ${PKG_DIR} && mkdir -p ${PKG_DIR}
+            docker run --rm -v $(pwd):/foo -w /foo lambci/lambda:build-python3.7 pip install -r ./requirements.txt --no-deps -t ${PKG_DIR}
+            cd .. 
+            pwd
       - run:
           name: Deploy lambdas
           command: |
