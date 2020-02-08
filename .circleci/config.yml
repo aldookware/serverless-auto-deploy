@@ -13,7 +13,9 @@ jobs:
       - checkout
       - run:
           name: Create lambda layer
-          command: ./build_layer.sh
+          command: | 
+            cd layer
+            source ./build_layer.sh
       - run:
           name: Deploy lambdas
           command: |
